@@ -1,10 +1,10 @@
 # Prompt Optimizer
 
-A small learning project for improving a prompt with DSPy.
+A practical prompt-optimization project built with DSPy.
 
 You provide a task and a starting prompt. The project generates test cases,
-measures the starting prompt, and produces an optimized prompt you can copy
-into another application.
+measures the starting prompt, and produces an optimized prompt you can use in
+another application or production workflow.
 
 ## Setup
 
@@ -86,6 +86,9 @@ accuracy, and individual test results.
 
 To use the result outside this project, combine `fixed_prompt` and
 `optimized_variable_prompt` in your target application.
+
+Before production use, validate the optimized prompt with representative,
+held-out cases from your real task.
 
 ## Project structure
 
