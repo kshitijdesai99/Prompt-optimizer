@@ -5,6 +5,7 @@ from pathlib import Path
 SRC_DIR = Path(__file__).parent
 
 OPENAI_API_KEY_ENV = "OPENAI_API_KEY"
+GENERATION_MODEL_NAME = "openai/gpt-5.6-luna"
 MODEL_NAME = "openai/gpt-5-nano"
 
 INPUTS_PATH = SRC_DIR / "inputs.yaml"

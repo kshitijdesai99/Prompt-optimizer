@@ -19,8 +19,8 @@ from pydantic import BaseModel, Field
 from constants import (
     EVAL_DATA_PATH,
     GENERATED_CASE_COUNT,
+    GENERATION_MODEL_NAME,
     INPUTS_PATH,
-    MODEL_NAME,
     OPENAI_API_KEY_ENV,
 )
 
@@ -36,7 +36,7 @@ if not OPENAI_API_KEY:
 
 # 2. Configure DSPy
 lm = dspy.LM(
-    MODEL_NAME,
+    GENERATION_MODEL_NAME,
     api_key=OPENAI_API_KEY,
 )
 
