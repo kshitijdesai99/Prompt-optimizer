@@ -9,3 +9,8 @@ wheels/
 # Virtual environments
 .venv
 .env
+
+# Generated optimization reports
+src/results/
+src/eval_results.json
+src/eval_data.json

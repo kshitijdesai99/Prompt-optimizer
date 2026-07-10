@@ -1,0 +1,14 @@
+task_objective: >
+  The user asks for the capital of France. The correct output must be exactly
+  Paris.
+
+case_requirements: >
+  Generate different natural ways users might ask for the capital of France.
+  Include direct questions, conversational questions, and questions containing
+  irrelevant context.
+
+fixed_prompt: >
+  Answer factual geography questions accurately and concisely.
+
+variable_prompt: >
+  Return only the answer.
