@@ -1,0 +1,42 @@
+[
+  {
+    "input": "What is the capital of France?",
+    "output": "Paris"
+  },
+  {
+    "input": "What is the capital city of France?",
+    "output": "Paris"
+  },
+  {
+    "input": "France's capital",
+    "output": "Paris"
+  },
+  {
+    "input": "The capital of France is what?",
+    "output": "Paris"
+  },
+  {
+    "input": "Which city serves as the capital of France?",
+    "output": "Paris"
+  },
+  {
+    "input": "Give me the capital of France.",
+    "output": "Paris"
+  },
+  {
+    "input": "France capital city",
+    "output": "Paris"
+  },
+  {
+    "input": "In France, what is the capital?",
+    "output": "Paris"
+  },
+  {
+    "input": "Capital of France, please.",
+    "output": "Paris"
+  },
+  {
+    "input": "Tell me the capital of France",
+    "output": "Paris"
+  }
+]
