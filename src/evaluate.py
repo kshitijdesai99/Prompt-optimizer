@@ -43,7 +43,7 @@ lm = dspy.LM(
 dspy.configure(lm=lm)
 
 
-# 4. Define one evaluation dataset row
+# 3. Define one evaluation dataset row
 class EvaluationCase(BaseModel):
     input: str = Field(
         description="User input given to the prompt"
@@ -54,7 +54,7 @@ class EvaluationCase(BaseModel):
     )
 
 
-# 5. Load the fixed and variable prompts
+# 4. Load the fixed and variable prompts
 with INPUTS_PATH.open("r", encoding="utf-8") as file:
     inputs = yaml.safe_load(file)
 
@@ -62,7 +62,7 @@ FIXED_PROMPT = inputs["fixed_prompt"]
 VARIABLE_PROMPT = inputs["variable_prompt"]
 
 
-# 6. Define the DSPy task
+# 5. Define the DSPy task
 class AnswerQuestion(dspy.Signature):
     fixed_prompt: str = dspy.InputField(
         desc="Permanent instructions that must always be followed"
@@ -77,7 +77,7 @@ class AnswerQuestion(dspy.Signature):
     )
 
 
-# 7. Define the program being evaluated
+# 6. Define the program being evaluated
 class PromptProgram(dspy.Module):
     def __init__(self, variable_prompt: str):
         super().__init__()
@@ -98,7 +98,7 @@ class PromptProgram(dspy.Module):
         )
 
 
-# 8. Normalize outputs before comparing them
+# 7. Normalize outputs before comparing them
 def normalize_output(value: str | None) -> str | None:
     """
     Remove irrelevant formatting differences.
@@ -120,7 +120,7 @@ def normalize_output(value: str | None) -> str | None:
     return normalized
 
 
-# 9. Define the evaluation metric
+# 8. Define the evaluation metric
 def exact_match(
     example: dspy.Example,
     prediction: dspy.Prediction,
@@ -132,7 +132,7 @@ def exact_match(
     return predicted_output == expected_output
 
 
-# 10. Load evaluation data
+# 9. Load evaluation data
 if not EVAL_DATA_PATH.exists():
     raise FileNotFoundError(
         f"Evaluation data was not found at: {EVAL_DATA_PATH}\n"
@@ -143,7 +143,7 @@ with EVAL_DATA_PATH.open("r", encoding="utf-8") as file:
     raw_cases = json.load(file)
 
 
-# 11. Validate the loaded cases
+# 10. Validate the loaded cases
 validated_cases = [
     EvaluationCase.model_validate(case)
     for case in raw_cases
@@ -153,7 +153,7 @@ if not validated_cases:
     raise ValueError("No evaluation cases were found in eval_data.json")
 
 
-# 12. Convert cases into DSPy examples
+# 11. Convert cases into DSPy examples
 evalset = [
     dspy.Example(
         input=case.input,
@@ -163,13 +163,13 @@ evalset = [
 ]
 
 
-# 13. Create the current prompt program
+# 12. Create the current prompt program
 program = PromptProgram(
     variable_prompt=VARIABLE_PROMPT
 )
 
 
-# 14. Create the evaluator
+# 13. Create the evaluator
 evaluator = dspy.Evaluate(
     devset=evalset,
     metric=exact_match,
@@ -177,11 +177,11 @@ evaluator = dspy.Evaluate(
 )
 
 
-# 15. Evaluate the current prompt
+# 14. Evaluate the current prompt
 evaluation = evaluator(program)
 
 
-# 16. Convert detailed results into dictionaries
+# 15. Convert detailed results into dictionaries
 results = []
 
 for example, prediction, score in evaluation.results:
@@ -201,7 +201,7 @@ for example, prediction, score in evaluation.results:
     results.append(result)
 
 
-# 17. Build the evaluation report
+# 16. Build the evaluation report
 correct_count = sum(
     result["correct"]
     for result in results
@@ -221,7 +221,7 @@ report = {
 }
 
 
-# 18. Save the evaluation report
+# 17. Save the evaluation report
 with EVAL_RESULTS_PATH.open("w", encoding="utf-8") as file:
     json.dump(
         report,

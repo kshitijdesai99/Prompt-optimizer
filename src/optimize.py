@@ -53,8 +53,7 @@ lm = dspy.LM(
 dspy.configure(lm=lm)
 
 
-# Defaults to MIPROv2. Set OPTIMIZER_NAME to "gepa" when running this
-# script to select the reflective optimizer.
+# 3. Select the optimizer and create the result folder
 OPTIMIZER_NAME = os.getenv(
     "OPTIMIZER_NAME",
     DEFAULT_OPTIMIZER,
